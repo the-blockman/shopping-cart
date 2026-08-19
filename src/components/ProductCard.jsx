@@ -18,7 +18,7 @@ export default function ProductCard({
             {" "}
             -{" "}
           </button>
-          <p>{cartItem.quantity}</p>
+          <p>{cartItem.quantity} in cart</p>
           <button
             onClick={() => updateQuantity(cartItem.id, cartItem.quantity + 1)}
           >
@@ -31,7 +31,7 @@ export default function ProductCard({
       return (
         <div>
           <button onClick={() => updateQuantity(cartItem.id, 0)}>delete</button>
-          <p>{cartItem.quantity}</p>
+          <p>{cartItem.quantity} in cart </p>
           <button
             onClick={() => updateQuantity(cartItem.id, cartItem.quantity + 1)}
           >
