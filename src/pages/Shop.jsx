@@ -1,6 +1,7 @@
 import useFetchProducts from "../hooks/useFetchProducts";
 import { CartContext } from "../context/CartContext";
 import { useContext } from "react";
+import ProductCard from "../components/ProductCard";
 
 function Shop() {
   const { cart, updateQuantity, addToCart } = useContext(CartContext);
