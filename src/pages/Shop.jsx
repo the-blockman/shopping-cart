@@ -1,10 +1,9 @@
 import useFetchProducts from "../hooks/useFetchProducts";
-import { CartContext } from "../context/CartContext";
-import { useContext } from "react";
 import ProductCard from "../components/ProductCard";
+import { useCart } from "../hooks/useCart";
 
 function Shop() {
-  const { cart, updateQuantity, addToCart } = useContext(CartContext);
+  const { cart, updateQuantity, addToCart } = useCart();
   const { products, error, loading } = useFetchProducts();
 
   if (loading) return <p>loading...</p>;

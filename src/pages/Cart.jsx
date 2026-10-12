@@ -1,8 +1,7 @@
-import { CartContext } from "../context/CartContext";
-import { useContext } from "react";
+import { useCart } from "../hooks/useCart";
 
 function Cart() {
-  const { cart, updateQuantity } = useContext(CartContext);
+  const { cart, updateQuantity } = useCart();
 
   function cartDisplay(item) {
     if (item.quantity > 1) {
