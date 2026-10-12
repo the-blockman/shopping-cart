@@ -7,9 +7,9 @@ function Shop() {
   const { products, error, loading } = useFetchProducts();
 
   if (loading) return <p>loading...</p>;
-  if (error) return <p>A network error has occured</p>;
+  if (error) return <p>A network error has occurred</p>;
   return (
-    <>
+    <div className="product-grid">
       {products.map((product) => (
         <ProductCard
           key={product.id}
@@ -19,7 +19,7 @@ function Shop() {
           updateQuantity={updateQuantity}
         />
       ))}
-    </>
+    </div>
   );
 }
 
