@@ -8,52 +8,57 @@ export default function ProductCard({
 
   function cartDisplay() {
     if (!cartItem) {
-      return <button onClick={() => addToCart(product)}> Add to cart </button>;
-    } else if (cartItem.quantity > 1) {
       return (
-        <div>
-          <button
-            onClick={() => updateQuantity(cartItem.id, cartItem.quantity - 1)}
-          >
-            {" "}
-            -{" "}
-          </button>
-          <p>{cartItem.quantity} in cart</p>
-          <button
-            onClick={() => updateQuantity(cartItem.id, cartItem.quantity + 1)}
-          >
-            {" "}
-            +{" "}
-          </button>
-        </div>
-      );
-    } else {
-      return (
-        <div>
-          <button onClick={() => updateQuantity(cartItem.id, 0)}>delete</button>
-          <p>{cartItem.quantity} in cart </p>
-          <button
-            onClick={() => updateQuantity(cartItem.id, cartItem.quantity + 1)}
-          >
-            +
-          </button>
-        </div>
+        <button className="btn btn-primary" onClick={() => addToCart(product)}>
+          Add to cart
+        </button>
       );
     }
+
+    return (
+      <div className="qty-control">
+        {cartItem.quantity > 1 ? (
+          <button
+            aria-label="Decrease quantity"
+            onClick={() => updateQuantity(cartItem.id, cartItem.quantity - 1)}
+          >
+            -
+          </button>
+        ) : (
+          <button
+            aria-label="Remove from cart"
+            onClick={() => updateQuantity(cartItem.id, 0)}
+          >
+            ✕
+          </button>
+        )}
+        <span>{cartItem.quantity} in cart</span>
+        <button
+          aria-label="Increase quantity"
+          onClick={() => updateQuantity(cartItem.id, cartItem.quantity + 1)}
+        >
+          +
+        </button>
+      </div>
+    );
   }
 
   return (
-    <>
-      <div>
-        <div>
-          <img src={product.image} alt={product.title} />
-        </div>
-        <div>
-          {product.title}
-          {product.price}
-          {cartDisplay()}
-        </div>
+    <article className="product-card">
+      <div className="product-image">
+        <img src={product.image} alt={product.title} />
       </div>
-    </>
+
+      <div className="product-info">
+        <div className="product-header">
+          <h2 className="product-title">{product.title}</h2>
+          <span className="product-price">${product.price.toFixed(2)}</span>
+        </div>
+        <p className="product-description">{product.description}</p>
+        <span className="product-category">{product.category}</span>
+      </div>
+
+      <div className="card-actions">{cartDisplay()}</div>
+    </article>
   );
 }
